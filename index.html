@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Messi Skills</title>
+
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      #app {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+      form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      input[type="url"] {
+        padding: 10px;
+        font-size: 16px;
+        width: 80%;
+        max-width: 600px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+      button {
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .tabs {
+        display: flex;
+        cursor: pointer;
+        margin: 20px 0;
+        justify-content: center;
+        border-bottom: 2px solid #ddd;
+      }
+      .tabs button {
+        padding: 10px 20px;
+        border: none;
+        background: #d40e0e;
+        margin: 0 5px;
+        cursor: pointer;
+        font-weight: bold;
+        border-bottom: 2px solid transparent;
+        transition: background 0.3s, border-bottom 0.3s;
+      }
+      .tabs button.active {
+        background: #e20d0d;
+        border-bottom: 2px solid #007bff;
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      .video-thumbnail {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        background-color: #d81414;
+      }
+      .video-thumbnail a {
+        display: block;
+        width: 100%;
+        text-decoration: none;
+      }
+      .video-thumbnail img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+      }
+      .video-thumbnail p {
+        padding: 10px;
+        margin: 0;
+        text-align: center;
+        background-color: #d61414;
+        color: #333;
+        font-size: 16px;
+        border-top: 1px solid #e60d0d;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <img src="/public/logo m.jfif" alt="Logo" />
+      <h1>Messi Skills</h1>
+
+      <div class="tabs">
+        <button id="tab-resumo" class="active">Resumo</button>
+        <button id="tab-videos">Vídeos</button>
+      </div>
+
+      <div id="resumo" class="tab-content active">
+        <form id="form">
+          <input type="url" id="url" placeholder="URL do vídeo" />
+          <button title="Resumir">
+            <i class="ph ph-play"></i>
+          </button>
+        </form>
+
+        <h2>Resumo</h2>
+        <p id="content" class="placeholder">Escolha um short para resumir</p>
+      </div>
+
+      <div id="videos" class="tab-content">
+        <h2>Vídeos</h2>
+        <!-- Links e imagens dos vídeos -->
+        <div class="video-thumbnail">
+          <a href="https://www.youtube.com/watch?v=b4_PA7GsLwA" target="_blank">
+            <img src="https://img.youtube.com/vi/b4_PA7GsLwA/0.jpg" alt="Messi Skills Video 1" />
+          </a>
+          <p>Messi Skills Video 1</p>
+        </div>
+        <div class="video-thumbnail">
+          <a href="https://www.youtube.com/watch?v=nA8wHQvHPJU" target="_blank">
+            <img src="https://img.youtube.com/vi/nA8wHQvHPJU/0.jpg" alt="Messi Skills Video 2" />
+          </a>
+          <p>Messi Skills Video 2</p>
+        </div>
+        <div class="video-thumbnail">
+          <a href="https://www.youtube.com/watch?v=QT_Fph5oEow" target="_blank">
+            <img src="https://img.youtube.com/vi/QT_Fph5oEow/0.jpg" alt="Messi Skills Video 3" />
+          </a>
+          <p>Messi Skills Video 3</p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="web/main.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.tabs button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            document.getElementById(tab.id.replace('tab-', '')).classList.add('active');
+            tab.classList.add('active');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
